@@ -695,32 +695,39 @@
       document.getElementById('content-judge').innerHTML = `<div style="color: #818CF8; font-size: 0.82rem; padding: 1.5rem 0;">Il Giudice sta formulando la valutazione preliminare a freddo...</div>`;
 
       try {
-        // FASE 1: I 4 AGENTI LAVORANO IN TOTALE AUTONOMIA
-        const [championRes, skepticRes, cfoRes, prelimJudgeRes] = await Promise.all([
-          evaluateAgent('champion', idea),
-          evaluateAgent('skeptic', idea),
-          evaluateAgent('cfo', idea),
-          evaluateAgent('judge_preliminary', idea)
-        ]);
+        // FASE 1: I 4 AGENTI LAVORANO IN AUTONOMIA E AGGIORNANO LA UI APPENA OGNUNO FINISCE
+        const pChamp = evaluateAgent('champion', idea).then(res => {
+          boardState.initialReports.champion = res.content;
+          document.getElementById('content-champion').innerHTML = formatMarkdown(res.content);
+          document.getElementById('badge-champion').className = "badge-status done";
+          document.getElementById('badge-champion').innerText = "Completato";
+          return res;
+        });
 
-        boardState.initialReports.champion = championRes.content;
-        document.getElementById('content-champion').innerHTML = formatMarkdown(championRes.content);
-        document.getElementById('badge-champion').className = "badge-status done";
-        document.getElementById('badge-champion').innerText = "Completato";
+        const pSkep = evaluateAgent('skeptic', idea).then(res => {
+          boardState.initialReports.skeptic = res.content;
+          document.getElementById('content-skeptic').innerHTML = formatMarkdown(res.content);
+          document.getElementById('badge-skeptic').className = "badge-status done";
+          document.getElementById('badge-skeptic').innerText = "Completato";
+          return res;
+        });
 
-        boardState.initialReports.skeptic = skepticRes.content;
-        document.getElementById('content-skeptic').innerHTML = formatMarkdown(skepticRes.content);
-        document.getElementById('badge-skeptic').className = "badge-status done";
-        document.getElementById('badge-skeptic').innerText = "Completato";
+        const pCfo = evaluateAgent('cfo', idea).then(res => {
+          boardState.initialReports.cfo = res.content;
+          document.getElementById('content-cfo').innerHTML = formatMarkdown(res.content);
+          document.getElementById('badge-cfo').className = "badge-status done";
+          document.getElementById('badge-cfo').innerText = "Completato";
+          return res;
+        });
 
-        boardState.initialReports.cfo = cfoRes.content;
-        document.getElementById('content-cfo').innerHTML = formatMarkdown(cfoRes.content);
-        document.getElementById('badge-cfo').className = "badge-status done";
-        document.getElementById('badge-cfo').innerText = "Completato";
+        const pJudgePrelim = evaluateAgent('judge_preliminary', idea).then(res => {
+          boardState.preliminary = res.content;
+          return res;
+        });
 
-        boardState.preliminary = prelimJudgeRes.content;
+        await Promise.all([pChamp, pSkep, pCfo, pJudgePrelim]);
 
-        // FASE 2: UNICO GIRO DI CONFRONTO
+        // FASE 2: UNICO GIRO DI CONFRONTO (OBIEZIONI E RISPOSTE)
         document.getElementById('pill-step1').className = "step-pill done";
         document.getElementById('pill-step2').className = "step-pill active";
 
@@ -733,20 +740,25 @@
         const otherForSkep = `--- SOSTENITORE STRATEGICO ---\n${boardState.initialReports.champion}\n\n--- REVISORE SPIETATO ---\n${boardState.initialReports.cfo}`;
         const otherForCfo = `--- SOSTENITORE STRATEGICO ---\n${boardState.initialReports.champion}\n\n--- SCETTICO DELLE IPOTESI ---\n${boardState.initialReports.skeptic}`;
 
-        const [rebChamp, rebSkep, rebCfo] = await Promise.all([
-          crossExamine('champion', boardState.initialReports.champion, otherForChamp),
-          crossExamine('skeptic', boardState.initialReports.skeptic, otherForSkep),
-          crossExamine('cfo', boardState.initialReports.cfo, otherForCfo)
-        ]);
+        const pRebChamp = crossExamine('champion', boardState.initialReports.champion, otherForChamp).then(res => {
+          boardState.rebuttals.champion = res.content;
+          document.getElementById('rebuttal-champion').innerHTML = formatMarkdown(res.content);
+          return res;
+        });
 
-        boardState.rebuttals.champion = rebChamp.content;
-        document.getElementById('rebuttal-champion').innerHTML = formatMarkdown(rebChamp.content);
+        const pRebSkep = crossExamine('skeptic', boardState.initialReports.skeptic, otherForSkep).then(res => {
+          boardState.rebuttals.skeptic = res.content;
+          document.getElementById('rebuttal-skeptic').innerHTML = formatMarkdown(res.content);
+          return res;
+        });
 
-        boardState.rebuttals.skeptic = rebSkep.content;
-        document.getElementById('rebuttal-skeptic').innerHTML = formatMarkdown(rebSkep.content);
+        const pRebCfo = crossExamine('cfo', boardState.initialReports.cfo, otherForCfo).then(res => {
+          boardState.rebuttals.cfo = res.content;
+          document.getElementById('rebuttal-cfo').innerHTML = formatMarkdown(res.content);
+          return res;
+        });
 
-        boardState.rebuttals.cfo = rebCfo.content;
-        document.getElementById('rebuttal-cfo').innerHTML = formatMarkdown(rebCfo.content);
+        await Promise.all([pRebChamp, pRebSkep, pRebCfo]);
 
         // FASE 3: VERDETTO FINALE DEL GIUDICE
         document.getElementById('pill-step2').className = "step-pill done";
