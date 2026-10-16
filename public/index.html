@@ -508,15 +508,15 @@
           <div class="agent-meta">
             <div class="agent-avatar champ">🚀</div>
             <div>
-              <div class="agent-title">Sostenitore strategico</div>
-              <div class="agent-engine">Gemini 3.8 Flash</div>
+              <div class="agent-title">Il Sostenitore (Upside)</div>
+              <div class="agent-engine">Gemini 3.8 Flash • Best Case & ICP</div>
             </div>
           </div>
           <span id="badge-champion" class="badge-status">In attesa</span>
         </div>
         <div id="content-champion" class="agent-body">
           <div class="placeholder-state">
-            Costruirà la versione più forte, concreta e realizzabile, individuando segmento iniziale, versione minima ed esperimento consigliato.
+            Dimostrerà come e perché l'idea può dominare il mercato se l'esecuzione è perfetta: Best Case Scenario, Network Effects, Go-To-Market di minor resistenza e ICP che comprerebbe oggi anche se imperfetto.
           </div>
         </div>
         <div id="rebuttal-box-champion" class="rebuttal-box" style="display: none;">
@@ -531,15 +531,15 @@
           <div class="agent-meta">
             <div class="agent-avatar skep">🛑</div>
             <div>
-              <div class="agent-title">Scettico delle ipotesi</div>
-              <div class="agent-engine">DeepSeek Reasoner/V3</div>
+              <div class="agent-title">Lo Scettico (Attrito)</div>
+              <div class="agent-engine">DeepSeek Reasoner/V3 • Logorazione & 3 Domande Fatali</div>
             </div>
           </div>
           <span id="badge-skeptic" class="badge-status">In attesa</span>
         </div>
         <div id="content-skeptic" class="agent-body">
           <div class="placeholder-state">
-            Estrarrà le assunzioni non dimostrate (tabella ipotesi decisive, conseguenze se false, alternative dell'utente e piano di verifica).
+            Autopsia preventiva: attriti che logorano l'esecuzione lenta, costi invisibili di cambio abitudine, dipendenze da terze parti e le 3 domande fatali a cui i founder non sanno rispondere.
           </div>
         </div>
         <div id="rebuttal-box-skeptic" class="rebuttal-box" style="display: none;">
@@ -554,15 +554,15 @@
           <div class="agent-meta">
             <div class="agent-avatar cfo">💀</div>
             <div>
-              <div class="agent-title">Revisore spietato</div>
-              <div class="agent-engine">Groq Cloud (Fast)</div>
+              <div class="agent-title">Lo Spietato (Red Teaming)</div>
+              <div class="agent-engine">Groq Cloud • Kill Shot & Competitor Infinito</div>
             </div>
           </div>
           <span id="badge-cfo" class="badge-status">In attesa</span>
         </div>
         <div id="content-cfo" class="agent-body">
           <div class="placeholder-state">
-            Pre-mortem rigoroso: punto di rottura principale, cosa tagliare subito, 5 possibili cause di fallimento e condizioni di stop.
+            Attacco distruttivo: Kill Shot immediato, smontaggio dell'arroganza di mercato, test del competitor infinito (Big Tech clone gratis in 48h) e la singola condizione di morte istantanea del progetto.
           </div>
         </div>
         <div id="rebuttal-box-cfo" class="rebuttal-box" style="display: none;">
@@ -580,10 +580,10 @@
           <div class="judge-avatar">⚖️</div>
           <div class="judge-info">
             <h3>
-              <span>Giudice Decisionale</span>
+              <span>Il Giudice (Verdetto Inappellabile)</span>
               <span id="badge-judge" class="badge-status">In attesa del dibattito</span>
             </h3>
-            <p>Sentenza definitiva orchestrata da Agnes AI dopo il confronto tra i 3 periti indipendenti</p>
+            <p>Sentenza definitiva categorica (GO | NO-GO | PIVOT STRUTTURALE) orchestrata da Agnes AI dopo il confronto</p>
           </div>
         </div>
         <button id="saveObsidianBtn" class="btn-obsidian" onclick="saveToObsidian()" disabled>
@@ -593,7 +593,7 @@
 
       <div id="content-judge" class="judge-content">
         <div style="color: var(--text-dim); font-style: italic; font-size: 0.82rem; padding: 1.5rem 0;">
-          Il Giudice emetterà il verdetto vincolante (<strong style="color: #34D399;">PROCEDI</strong> | <strong style="color: #FBBF24;">VALIDA PRIMA</strong> | <strong style="color: #60A5FA;">MODIFICA</strong> | <strong style="color: #FB7185;">ARCHIVIA</strong>) dopo aver esaminato le perizie dei primi tre agenti e il giro di confronto.
+          Il Giudice emetterà il verdetto vincolante categorico (<strong style="color: #34D399;">GO</strong> | <strong style="color: #FB7185;">NO-GO</strong> | <strong style="color: #FBBF24;">PIVOT STRUTTURALE</strong>), calcolando la probabilità di successo % e fissando le 3 condizioni di sopravvivenza non negoziabili per i primi 6 mesi.
         </div>
       </div>
     </section>
@@ -846,7 +846,7 @@
       document.getElementById('badge-champion').innerText = "In attesa";
       document.getElementById('content-champion').innerHTML = `
         <div class="placeholder-state">
-          Costruirà la versione più forte, concreta e realizzabile, individuando segmento iniziale, versione minima ed esperimento consigliato.
+          Dimostrerà come e perché l'idea può dominare il mercato se l'esecuzione è perfetta: Best Case Scenario, Network Effects, Go-To-Market di minor resistenza e ICP che comprerebbe oggi anche se imperfetto.
         </div>`;
       document.getElementById('rebuttal-box-champion').style.display = 'none';
       document.getElementById('rebuttal-champion').innerHTML = '';
@@ -856,7 +856,7 @@
       document.getElementById('badge-skeptic').innerText = "In attesa";
       document.getElementById('content-skeptic').innerHTML = `
         <div class="placeholder-state">
-          Estrarrà le assunzioni non dimostrate (tabella ipotesi decisive, conseguenze se false, alternative dell'utente e piano di verifica).
+          Autopsia preventiva: attriti che logorano l'esecuzione lenta, costi invisibili di cambio abitudine, dipendenze da terze parti e le 3 domande fatali a cui i founder non sanno rispondere.
         </div>`;
       document.getElementById('rebuttal-box-skeptic').style.display = 'none';
       document.getElementById('rebuttal-skeptic').innerHTML = '';
@@ -866,7 +866,7 @@
       document.getElementById('badge-cfo').innerText = "In attesa";
       document.getElementById('content-cfo').innerHTML = `
         <div class="placeholder-state">
-          Pre-mortem rigoroso: punto di rottura principale, cosa tagliare subito, 5 possibili cause di fallimento e condizioni di stop.
+          Attacco distruttivo: Kill Shot immediato, smontaggio dell'arroganza di mercato, test del competitor infinito (Big Tech clone gratis in 48h) e la singola condizione di morte istantanea del progetto.
         </div>`;
       document.getElementById('rebuttal-box-cfo').style.display = 'none';
       document.getElementById('rebuttal-cfo').innerHTML = '';
@@ -876,7 +876,7 @@
       document.getElementById('badge-judge').innerText = "In attesa del dibattito";
       document.getElementById('content-judge').innerHTML = `
         <div style="color: var(--text-dim); font-style: italic; font-size: 0.82rem; padding: 1.5rem 0;">
-          Il Giudice emetterà il verdetto vincolante (<strong style="color: #34D399;">PROCEDI</strong> | <strong style="color: #FBBF24;">VALIDA PRIMA</strong> | <strong style="color: #60A5FA;">MODIFICA</strong> | <strong style="color: #FB7185;">ARCHIVIA</strong>) dopo aver esaminato le perizie dei primi tre agenti e il giro di confronto.
+          Il Giudice emetterà il verdetto vincolante categorico (<strong style="color: #34D399;">GO</strong> | <strong style="color: #FB7185;">NO-GO</strong> | <strong style="color: #FBBF24;">PIVOT STRUTTURALE</strong>), calcolando la probabilità di successo % e fissando le 3 condizioni di sopravvivenza non negoziabili per i primi 6 mesi.
         </div>`;
 
       // Disabilita tasto Obsidian
