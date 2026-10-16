@@ -40,7 +40,7 @@ function loadEnv() {
 
 loadEnv();
 
-// ── Configurazione Provider & Modelli ─────────────────────────────────────
+// ── Configurazione Provider & Modelli Verificati ─────────────────────────
 const PROVIDERS = {
   gemini: {
     name: 'Gemini (Google)',
@@ -55,10 +55,10 @@ const PROVIDERS = {
     model: 'deepseek-chat',
   },
   groq: {
-    name: 'Groq (Llama 3.3 70B)',
+    name: 'Groq (Fast Cloud)',
     baseUrl: process.env.GROQ_BASE_URL || 'https://api.groq.com/openai/v1',
     apiKey: process.env.GROQ_API_KEY,
-    model: 'llama-3.3-70b-versatile',
+    model: 'qwen/qwen3.8-27b',
   },
   agnes: {
     name: 'Agnes AI',
@@ -106,9 +106,15 @@ async function callProvider(providerKey, systemPrompt, userPrompt, temperature =
     return data.choices?.[0]?.message?.content || 'Nessuna risposta generata.';
   } catch (err) {
     clearTimeout(timeoutId);
+    console.warn(`⚠️ [Provider Error] ${providerKey} fallito:`, err.message);
+    // Cascade Fallback robusto se un provider ha quota esaurita o 404
     if (providerKey === 'gemini') {
-      console.warn(`⚠️ [Fallback] Gemini non disponibile, delega a Groq...`, err.message);
+      console.warn(`🔄 Fallback Gemini -> Groq...`);
       return await callProvider('groq', systemPrompt, userPrompt, temperature);
+    }
+    if (providerKey === 'cfo' || providerKey === 'groq') {
+      console.warn(`🔄 Fallback Groq -> DeepSeek...`);
+      return await callProvider('deepseek', systemPrompt, userPrompt, temperature);
     }
     throw err;
   }
