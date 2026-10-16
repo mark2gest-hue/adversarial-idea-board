@@ -957,6 +957,13 @@
         <span class="ares-chip-badge">⚡ Clamshell 24/7</span>
         <span class="ares-chip-badge">🔒 Whitelist Attiva</span>
       </div>
+      <div style="margin-top: 0.65rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+        <button id="btnPlayBriefing" class="ares-chip-btn" onclick="playAresAudioBriefing()" style="background: linear-gradient(135deg, rgba(99,102,241,0.25), rgba(168,85,247,0.25)); border: 1px solid rgba(168,85,247,0.4); color: #C084FC; font-weight: 700; padding: 0.45rem 0.85rem; border-radius: 9999px;">
+          <span>🎧 Ascolta Briefing Vocale (Federica AI)</span>
+        </button>
+        <audio id="briefingAudioPlayer" controls style="display: none; height: 32px; vertical-align: middle;"></audio>
+        <span id="briefingStatusText" style="font-size: 0.74rem; color: var(--text-dim); font-style: italic;"></span>
+      </div>
     </div>
 
     <!-- 1. CASELLE AIUTIAMOCI -->
@@ -991,6 +998,85 @@
         Tocca "Controlla Posta" per interrogare il server delle email in arrivo.
       </div>
       <div id="aresEmailList" style="display: none; flex-direction: column; gap: 0.4rem;"></div>
+    </section>
+
+    <!-- 2. BOT TRADING (PORTA 3100) & EMERGENCY KILL SWITCH -->
+    <section class="ares-card">
+      <div class="ares-card-head">
+        <div class="ares-card-title">
+          <span>📈 Bot Trading Snapshot (Porta 3100)</span>
+        </div>
+        <button id="btnCheckTrading" class="btn-preset" onclick="loadAresTrading()" style="font-weight: 700; color: #10B981; border-color: rgba(16,185,129,0.3);">
+          <span>🔄 Snapshot</span>
+        </button>
+      </div>
+      <div class="ares-boxes-grid">
+        <div class="ares-box">
+          <div id="trade-status" class="ares-box-val" style="font-size: 0.92rem; color: var(--text-muted);">-</div>
+          <div class="ares-box-lbl">Stato Motore</div>
+        </div>
+        <div class="ares-box">
+          <div id="trade-balance" class="ares-box-val" style="color: #34D399;">$0</div>
+          <div class="ares-box-lbl">Bankroll</div>
+        </div>
+        <div class="ares-box">
+          <div id="trade-positions" class="ares-box-val">0</div>
+          <div class="ares-box-lbl">Posizioni Aperte</div>
+        </div>
+        <div class="ares-box">
+          <div id="trade-sentiment" class="ares-box-val" style="font-size: 0.92rem; color: #818CF8;">-</div>
+          <div class="ares-box-lbl">Sentiment</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.5rem; align-items: center; margin-top: 0.5rem;">
+        <button id="btnKillTrading" class="btn-evaluate" onclick="killTradingSwitch()" style="background: linear-gradient(135deg, #EF4444, #B91C1C); border-color: #EF4444; width: 100%; justify-content: center; box-shadow: 0 4px 14px rgba(239,68,68,0.35);">
+          <span>🚨 ARRESTO EMERGENZA (KILL SWITCH)</span>
+        </button>
+      </div>
+      <div id="aresTradingFeedback" style="display: none; font-size: 0.75rem; padding: 0.6rem; border-radius: 6px; margin-top: 0.4rem;"></div>
+    </section>
+
+    <!-- 3. FLOWAUDIT EXPRESS (PREVENTIVATORE RAPIDO PMI) -->
+    <section class="ares-card">
+      <div class="ares-card-head">
+        <div class="ares-card-title">
+          <span>⚡ FlowAudit Express — Preventivatore Rapido PMI</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.5rem;">
+        <input id="faCompany" type="text" class="textarea-box" style="min-height: unset; padding: 0.5rem 0.75rem;" placeholder="Nome Azienda (es. Logistica Rossi)">
+        <input id="faEmployees" type="number" class="textarea-box" style="min-height: unset; padding: 0.5rem 0.75rem;" placeholder="N. Addetti" value="8">
+      </div>
+      <div style="display: flex; gap: 0.5rem; margin-top: 0.3rem;">
+        <input id="faSector" type="text" class="textarea-box" style="min-height: unset; padding: 0.5rem 0.75rem;" placeholder="Settore (es. Manifattura, Servizi, Sanità)" value="Manifattura">
+      </div>
+      <button id="btnCalcFlowAudit" class="btn-evaluate" onclick="calcFlowAuditExpress()" style="width: 100%; justify-content: center; background: linear-gradient(135deg, #2563EB, #4F46E5); box-shadow: 0 4px 14px rgba(37,99,235,0.35); margin-top: 0.4rem;">
+        <span>⚡ Calcola ROI & Genera WhatsApp Copy</span>
+      </button>
+      <div id="faResultArea" style="display: none; flex-direction: column; gap: 0.5rem; margin-top: 0.4rem;">
+        <div class="ares-boxes-grid">
+          <div class="ares-box">
+            <div id="fa-hours" class="ares-box-val" style="color: #60A5FA;">-</div>
+            <div class="ares-box-lbl">Ore/Mese Recuperabili</div>
+          </div>
+          <div class="ares-box">
+            <div id="fa-benefit" class="ares-box-val" style="color: #34D399;">-</div>
+            <div class="ares-box-lbl">Risparmio Mensile</div>
+          </div>
+          <div class="ares-box">
+            <div id="fa-annual" class="ares-box-val" style="color: #FBBF24;">-</div>
+            <div class="ares-box-lbl">Beneficio Annuale</div>
+          </div>
+          <div class="ares-box">
+            <div id="fa-roi" class="ares-box-val" style="color: #A78BFA;">-</div>
+            <div class="ares-box-lbl">ROI 1° Anno</div>
+          </div>
+        </div>
+        <textarea id="faCopyText" class="textarea-box" rows="4" readonly style="font-size: 0.75rem; background: rgba(0,0,0,0.35); line-height: 1.4;"></textarea>
+        <button id="btnCopyWa" class="btn-preset" onclick="copyFlowAuditWhatsapp()" style="width: 100%; justify-content: center; color: #34D399; border-color: rgba(52,211,153,0.3); font-weight: 700;">
+          <span>📋 Copia Messaggio per WhatsApp</span>
+        </button>
+      </div>
     </section>
 
     <!-- 2. SQUADRA AGENTI (ORCHESTRATORE PORTA 3005) -->
@@ -1381,12 +1467,141 @@
         btnBoard.className = 'nav-tab-btn';
         btnAres.className = 'nav-tab-btn active';
         loadAresSystem();
+        loadAresTrading();
       } else {
         viewBoard.style.display = 'block';
         viewAres.style.display = 'none';
         btnBoard.className = 'nav-tab-btn active';
         btnAres.className = 'nav-tab-btn';
       }
+    }
+
+    async function playAresAudioBriefing() {
+      const btn = document.getElementById('btnPlayBriefing');
+      const player = document.getElementById('briefingAudioPlayer');
+      const txt = document.getElementById('briefingStatusText');
+
+      btn.disabled = true;
+      btn.innerHTML = '<span>⏳ Generazione Audio (Federica AI)...</span>';
+      txt.innerText = 'Sintesi vocale e raccolta dati in corso...';
+
+      try {
+        const res = await fetch(`${API_BASE}/api/ares/digest`, { method: 'POST' }).then(r => r.json());
+        if (res.success) {
+          player.src = `${API_BASE}/api/ares/digest/audio?t=${Date.now()}`;
+          player.style.display = 'inline-block';
+          player.play();
+          txt.innerText = 'Riproduzione in corso.';
+        } else {
+          txt.innerText = `⚠️ ${res.error || 'Errore generazione audio'}`;
+        }
+      } catch (err) {
+        txt.innerText = `⚠️ Errore di rete: ${err.message}`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>🎧 Ascolta Briefing Vocale (Federica AI)</span>';
+      }
+    }
+
+    async function loadAresTrading() {
+      const btn = document.getElementById('btnCheckTrading');
+      const statusEl = document.getElementById('trade-status');
+      const balEl = document.getElementById('trade-balance');
+      const posEl = document.getElementById('trade-positions');
+      const sentEl = document.getElementById('trade-sentiment');
+      const fb = document.getElementById('aresTradingFeedback');
+
+      if (btn) btn.disabled = true;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/ares/trading`).then(r => r.json());
+        if (res.success) {
+          if (res.online) {
+            statusEl.innerText = res.botActive ? 'Attivo' : 'Pausa Kill';
+            statusEl.style.color = res.botActive ? '#34D399' : '#EF4444';
+            balEl.innerText = `$${res.bankrollUsd}`;
+            posEl.innerText = res.activePositions?.length || 0;
+            sentEl.innerText = `${res.sentiment?.mood || 'Neutral'} (${res.sentiment?.score || 50})`;
+          } else {
+            statusEl.innerText = 'Standby';
+            statusEl.style.color = 'var(--text-dim)';
+            balEl.innerText = '$0';
+            posEl.innerText = '0';
+            sentEl.innerText = 'Standby (:3100)';
+          }
+        }
+      } catch (e) {
+        statusEl.innerText = 'Offline';
+        statusEl.style.color = 'var(--text-dim)';
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    }
+
+    async function killTradingSwitch() {
+      if (!confirm("🚨 SEI SICURO DI VOLER ARRESTARE TUTTE LE OPERAZIONI DEL BOT TRADING IMMEDIATAMENTE?")) {
+        return;
+      }
+
+      const fb = document.getElementById('aresTradingFeedback');
+      fb.style.display = 'block';
+      fb.style.background = 'rgba(239,68,68,0.15)';
+      fb.style.color = '#F87171';
+      fb.innerText = '⏳ Invio comando di emergenza...';
+
+      try {
+        const res = await fetch(`${API_BASE}/api/ares/trading/kill`, { method: 'POST' }).then(r => r.json());
+        fb.innerText = res.message || 'Comando eseguito.';
+        loadAresTrading();
+      } catch (err) {
+        fb.innerText = `⚠️ Errore kill switch: ${err.message}`;
+      }
+    }
+
+    async function calcFlowAuditExpress() {
+      const company = document.getElementById('faCompany').value.trim();
+      const sector = document.getElementById('faSector').value.trim();
+      const employees = document.getElementById('faEmployees').value.trim();
+      const btn = document.getElementById('btnCalcFlowAudit');
+      const resArea = document.getElementById('faResultArea');
+
+      btn.disabled = true;
+      btn.innerHTML = '<span>⏳ Calcolo in corso...</span>';
+
+      try {
+        const res = await fetch(`${API_BASE}/api/ares/flowaudit`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ company, sector, employees })
+        }).then(r => r.json());
+
+        if (res.success) {
+          resArea.style.display = 'flex';
+          document.getElementById('fa-hours').innerText = `~${res.monthlyHoursSaved}h`;
+          document.getElementById('fa-benefit').innerText = `${res.monthlyBenefit.toLocaleString('it-IT')} €`;
+          document.getElementById('fa-annual').innerText = `${res.annualBenefit.toLocaleString('it-IT')} €`;
+          document.getElementById('fa-roi').innerText = `${res.roiMultiplier}x`;
+          document.getElementById('faCopyText').value = res.whatsappCopy;
+        } else {
+          alert("Errore calcolo FlowAudit: " + (res.error || 'Server error'));
+        }
+      } catch (err) {
+        alert("Errore di rete: " + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>⚡ Calcola ROI & Genera WhatsApp Copy</span>';
+      }
+    }
+
+    function copyFlowAuditWhatsapp() {
+      const copyText = document.getElementById('faCopyText');
+      copyText.select();
+      navigator.clipboard.writeText(copyText.value).then(() => {
+        const btn = document.getElementById('btnCopyWa');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<span>✅ Copiato negli Appunti!</span>';
+        setTimeout(() => { btn.innerHTML = orig; }, 2500);
+      });
     }
 
     async function loadAresEmails() {
@@ -1527,7 +1742,6 @@
             </div>
           `).join('');
         }
-      } catch {}
     }
   </script>
 </body>
