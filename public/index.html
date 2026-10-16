@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏛️ Adversarial AI Board — Stress Test Nuove Idee</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #090B10;
+      color: #F1F5F9;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-card {
+      background: rgba(18, 22, 34, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+    }
+    .glass-card:hover {
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+    .pulse-dot {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.15); }
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-20 selection:bg-indigo-500/30">
+
+  <!-- TOP HEADER -->
+  <header class="border-b border-white/10 bg-[#0C101A]/90 sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-rose-500/20 text-xl">
+          🏛️
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-lg font-bold text-white tracking-tight">Adversarial Advisory Board</h1>
+            <span class="mono text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold uppercase">Personal Edition</span>
+          </div>
+          <p class="text-xs text-slate-400">Stress-test preliminare per le nuove idee e accordi di Marco</p>
+        </div>
+      </div>
+
+      <!-- STATUS BADGES DE I 4 MOTORI -->
+      <div class="hidden md:flex items-center space-x-2 text-xs">
+        <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 pulse-dot"></span>Gemini (Visionario)
+        </span>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 font-medium">
+          <span class="w-1.5 h-1.5 rounded-full bg-rose-400 mr-1.5 pulse-dot"></span>DeepSeek (Scettico)
+        </span>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 font-medium">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mr-1.5 pulse-dot"></span>Groq (CFO)
+        </span>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-medium">
+          <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mr-1.5 pulse-dot"></span>Agnes (Giudice)
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
+
+    <!-- INPUT BOX SECTION -->
+    <section class="glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="text-base font-bold text-white flex items-center">
+            <span class="text-indigo-400 mr-2">⚡</span> Inserisci l'Idea o l'Accordo da Stressare
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">Spiega in poche righe cosa vuoi costruire, il modello di prezzo o la trattativa aperta.</p>
+        </div>
+
+        <!-- QUICK PRESETS -->
+        <div class="hidden sm:flex items-center space-x-2">
+          <span class="text-xs text-slate-500">Preset rapidi:</span>
+          <button onclick="applyPreset('alpha')" class="text-xs px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+            Amazon Suite / Alpha
+          </button>
+          <button onclick="applyPreset('flowaudit')" class="text-xs px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+            FlowAudit Discovery
+          </button>
+          <button onclick="applyPreset('bot')" class="text-xs px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+            Bot Prop Trading
+          </button>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <textarea id="ideaInput" rows="4" 
+          placeholder="Es: Vorrei lanciare una suite di agenti AI per merchant Amazon in partnership con Alpha. Alpha fa da distributore commerciale per i suoi 100 clienti e-commerce e trattiene il 20% sul canone, io fornisco tecnologia e hosting VPS con canone mensile di 250€/mese per merchant..."
+          class="w-full bg-[#0C101A] border border-white/10 rounded-xl p-4 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition resize-y"></textarea>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+          <div class="flex items-center space-x-2 text-xs text-slate-400">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>4 Modelli indipendenti interrogano simultaneamente il caso</span>
+          </div>
+
+          <button id="startBtn" onclick="runStressTest()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-600 to-rose-600 hover:from-indigo-600 hover:to-rose-700 text-white font-bold text-sm shadow-lg shadow-indigo-500/25 flex items-center justify-center space-x-2 transition transform active:scale-95 cursor-pointer">
+            <span>🔥 Avvia Dibattito Adversarial</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE ADVERSARIAL BOARD GRID (3 COLONNE DIVERGENTI) -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- AGENTE 1: SOSTENITORE (GEMINI) -->
+      <div class="glass-card rounded-2xl p-6 flex flex-col relative overflow-hidden border-t-2 border-t-emerald-500">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-lg">
+              🚀
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-emerald-400">Il Sostenitore</h3>
+              <p class="text-[11px] text-slate-400 mono">Gemini 2.5 Flash</p>
+            </div>
+          </div>
+          <span id="badge-champion" class="mono text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10">In attesa</span>
+        </div>
+        <div id="content-champion" class="mt-4 text-xs text-slate-300 leading-relaxed space-y-3 flex-1 overflow-y-auto max-h-[380px] pr-1">
+          <p class="text-slate-500 italic">In attesa dell'idea per identificare il potenziale di scala, la proposta di valore unica e le leve competitive...</p>
+        </div>
+      </div>
+
+      <!-- AGENTE 2: SCETTICO (DEEPSEEK) -->
+      <div class="glass-card rounded-2xl p-6 flex flex-col relative overflow-hidden border-t-2 border-t-rose-500">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-lg">
+              🛑
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-rose-400">Lo Scettico</h3>
+              <p class="text-[11px] text-slate-400 mono">DeepSeek Reasoner/V3</p>
+            </div>
+          </div>
+          <span id="badge-skeptic" class="mono text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10">In attesa</span>
+        </div>
+        <div id="content-skeptic" class="mt-4 text-xs text-slate-300 leading-relaxed space-y-3 flex-1 overflow-y-auto max-h-[380px] pr-1">
+          <p class="text-slate-500 italic">In attesa dell'idea per trovare le crepe mortali, i rischi contrattuali e i motivi di fallimento entro 60 giorni...</p>
+        </div>
+      </div>
+
+      <!-- AGENTE 3: CFO (GROQ) -->
+      <div class="glass-card rounded-2xl p-6 flex flex-col relative overflow-hidden border-t-2 border-t-amber-500">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-lg">
+              💰
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-amber-400">Il CFO Spietato</h3>
+              <p class="text-[11px] text-slate-400 mono">Groq Llama 3.3 70B</p>
+            </div>
+          </div>
+          <span id="badge-cfo" class="mono text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10">In attesa</span>
+        </div>
+        <div id="content-cfo" class="mt-4 text-xs text-slate-300 leading-relaxed space-y-3 flex-1 overflow-y-auto max-h-[380px] pr-1">
+          <p class="text-slate-500 italic">In attesa dell'idea per calcolare margini netti, costi orari/token e la formula di monetizzazione a cassa immediata...</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- AGENTE 4: IL GIUDICE ESECUTIVO (AGNES AI) - VERDETTO FINALE -->
+    <section class="glass-card rounded-2xl p-6 sm:p-8 border-t-4 border-t-indigo-500 relative overflow-hidden shadow-2xl">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+        <div class="flex items-center space-x-4">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-2xl shadow-lg shadow-indigo-500/30">
+            ⚖️
+          </div>
+          <div>
+            <div class="flex items-center space-x-3">
+              <h3 class="text-base font-extrabold text-white tracking-tight">Verdetto Esecutivo del Giudice</h3>
+              <span id="badge-judge" class="mono text-xs px-2.5 py-0.5 rounded-full bg-white/5 text-slate-400 border border-white/10">In attesa del dibattito</span>
+            </div>
+            <p class="text-xs text-slate-400">Sintesi imparziale orchestrata da Agnes AI dopo aver ascoltato Gemini, DeepSeek e Groq</p>
+          </div>
+        </div>
+
+        <!-- ACTIONS: SALVA IN OBSIDIAN -->
+        <div class="flex items-center space-x-3">
+          <button id="saveObsidianBtn" onclick="saveToObsidian()" disabled class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed transition flex items-center space-x-2">
+            <span>💾 Salva nel Secondo Cervello (Obsidian)</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="content-judge" class="mt-6 text-sm text-slate-200 leading-relaxed space-y-4">
+        <div class="p-6 rounded-xl bg-white/[0.02] border border-white/5 text-slate-500 text-center italic text-xs">
+          Il Giudice interverrà automaticamente appena il Sostenitore, lo Scettico e il CFO avranno completato la loro deposizione.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const API_BASE = 'http://localhost:3028';
+
+    const presets = {
+      alpha: "Vorrei lanciare una suite di agenti AI per merchant Amazon (Amazon Agent Studio) in partnership con Alpha / E-Bridge. Alpha opera come distributore commerciale esclusivo verso il suo portafoglio di 100 clienti e-commerce e trattiene il 20% sul canone mensile. Io sviluppo, gestisco l'infrastruttura su VPS Oracle dedicate per cliente e le chiavi crittografate. Offerta: Setup iniziale 600€ + canone 290€/mese per merchant. Vorrei capire se i termini contrattuali reggono o se rischio di lavorare gratis per l'onboarding.",
+      flowaudit: "Creare un'applicazione standalone mobile-first (FlowAudit AI) per fare discovery e audit dei processi aziendali direttamente sul campo da iPad/smartphone presso le PMI clienti. Genera in 3 minuti un report d'impatto con ROI calcolato e proposta di adozione agenti AI. Modello: canone di consulenza una tantum da 1.200€ ad audit.",
+      bot: "Lanciare un bot ad alta frequenza (NautilusTrader + Hyperliquid L1) con modello Avellaneda-Stoikov e order flow imbalance per raccogliere fee di market making. Capitale iniziale 15.000$ gestito con Stop Loss stringente a Break-Even netto reale. Vorrei validare se conviene raccogliere capitali terzi (PAMM) o tenerlo 100% proprietario."
+    };
+
+    function applyPreset(key) {
+      document.getElementById('ideaInput').value = presets[key] || '';
+    }
+
+    function formatMarkdown(text) {
+      if (!text) return '';
+      return text
+        .replace(/^### (.*$)/gim, '<h4 class="font-bold text-white text-xs mt-3 mb-1 uppercase tracking-wider text-indigo-400">$1</h4>')
+        .replace(/^## (.*$)/gim, '<h3 class="font-bold text-white text-sm mt-3 mb-1.5">$1</h3>')
+        .replace(/^# (.*$)/gim, '<h2 class="font-extrabold text-white text-base mt-4 mb-2">$1</h2>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')
+        .replace(/^\s*-\s+(.*$)/gim, '<li class="ml-4 list-disc text-slate-300 my-1">$1</li>')
+        .replace(/\n\n/g, '<div class="h-2"></div>')
+        .replace(/\n/g, '<br/>');
+    }
+
+    let boardResults = {
+      champion: '',
+      skeptic: '',
+      cfo: '',
+      judge: ''
+    };
+
+    async function evaluateAgent(role, idea, boardContext = null) {
+      const res = await fetch(`${API_BASE}/api/evaluate-agent`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ role, idea, boardContext })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || `Errore agente ${role}`);
+      }
+      return await res.json();
+    }
+
+    async function runStressTest() {
+      const idea = document.getElementById('ideaInput').value.trim();
+      if (!idea) {
+        alert('Inserisci prima un\'idea o proposta contrattuale da stressare!');
+        return;
+      }
+
+      const startBtn = document.getElementById('startBtn');
+      startBtn.disabled = true;
+      startBtn.innerHTML = `<span>⏳ Dibattito in Corso...</span>`;
+
+      // Reset stati grafici
+      ['champion', 'skeptic', 'cfo', 'judge'].forEach(r => {
+        document.getElementById(`badge-${r}`).className = "mono text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20";
+        document.getElementById(`badge-${r}`).innerText = "In analisi...";
+        document.getElementById(`content-${r}`).innerHTML = `<div class="flex items-center space-x-2 text-slate-400 text-xs py-4"><span class="w-2 h-2 rounded-full bg-amber-400 pulse-dot"></span><span>Elaborazione argomentazioni in corso...</span></div>`;
+      });
+      document.getElementById('saveObsidianBtn').disabled = true;
+
+      try {
+        // Step 1: Esecuzione parallela dei primi 3 cervelli (Gemini, DeepSeek, Groq)
+        const [championRes, skepticRes, cfoRes] = await Promise.all([
+          evaluateAgent('champion', idea),
+          evaluateAgent('skeptic', idea),
+          evaluateAgent('cfo', idea)
+        ]);
+
+        boardResults.champion = championRes.content;
+        document.getElementById('content-champion').innerHTML = formatMarkdown(championRes.content);
+        document.getElementById('badge-champion').className = "mono text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+        document.getElementById('badge-champion').innerText = "Completato";
+
+        boardResults.skeptic = skepticRes.content;
+        document.getElementById('content-skeptic').innerHTML = formatMarkdown(skepticRes.content);
+        document.getElementById('badge-skeptic').className = "mono text-[10px] px-2 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20";
+        document.getElementById('badge-skeptic').innerText = "Completato";
+
+        boardResults.cfo = cfoRes.content;
+        document.getElementById('content-cfo').innerHTML = formatMarkdown(cfoRes.content);
+        document.getElementById('badge-cfo').className = "mono text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20";
+        document.getElementById('badge-cfo').innerText = "Completato";
+
+        // Step 2: Il Giudice (Agnes AI) analizza l'intero dibattito per emettere il verdetto
+        document.getElementById('badge-judge').innerText = "Agnes sta deliberando...";
+        document.getElementById('content-judge').innerHTML = `<div class="flex items-center space-x-2 text-indigo-400 text-sm py-4"><span class="w-2 h-2 rounded-full bg-indigo-400 pulse-dot"></span><span>Il Giudice Agnes sta pesando le argomentazioni per il verdetto finale...</span></div>`;
+
+        const judgeRes = await evaluateAgent('judge', idea, {
+          champion: boardResults.champion,
+          skeptic: boardResults.skeptic,
+          cfo: boardResults.cfo
+        });
+
+        boardResults.judge = judgeRes.content;
+        document.getElementById('content-judge').innerHTML = formatMarkdown(judgeRes.content);
+        document.getElementById('badge-judge').className = "mono text-xs px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30";
+        document.getElementById('badge-judge').innerText = "Verdetto Esecutivo Emesso";
+        document.getElementById('saveObsidianBtn').disabled = false;
+
+      } catch (err) {
+        alert('Errore durante lo stress test: ' + err.message);
+      } finally {
+        startBtn.disabled = false;
+        startBtn.innerHTML = `<span>🔥 Avvia Nuovo Stress Test</span>`;
+      }
+    }
+
+    async function saveToObsidian() {
+      const idea = document.getElementById('ideaInput').value.trim();
+      const firstLine = idea.split('\n')[0].slice(0, 40) || 'Idea';
+      const btn = document.getElementById('saveObsidianBtn');
+      btn.disabled = true;
+      btn.innerText = 'Salvataggio in corso...';
+
+      try {
+        const res = await fetch(`${API_BASE}/api/save-obsidian`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title: firstLine,
+            idea,
+            champion: boardResults.champion,
+            skeptic: boardResults.skeptic,
+            cfo: boardResults.cfo,
+            judge: boardResults.judge
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          btn.className = "px-4 py-2 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-xs font-semibold text-emerald-300 flex items-center space-x-2";
+          btn.innerText = '✅ Salvato in Obsidian 01_Progetti!';
+        } else {
+          throw new Error(data.error);
+        }
+      } catch (err) {
+        alert('Errore salvataggio Obsidian: ' + err.message);
+        btn.disabled = false;
+        btn.innerText = 'Riprova salvataggio';
+      }
+    }
+  </script>
+</body>
+</html>

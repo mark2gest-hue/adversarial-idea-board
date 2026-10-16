@@ -1,0 +1,24 @@
+{
+  "name": "adversarial-idea-board",
+  "version": "1.0.0",
+  "description": "Adversarial AI Advisory Board — Stress test business ideas, pitches and contracts with 4 divergent AI minds (Gemini, DeepSeek, Groq, Agnes)",
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "multi-agent",
+    "deepseek",
+    "gemini",
+    "groq",
+    "agnes",
+    "business-validation",
+    "startup"
+  ],
+  "author": "Marco <mark2gest@gmail.com>",
+  "license": "MIT"
+}

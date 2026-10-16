@@ -1,0 +1,14 @@
+# Environment & API Keys
+.env
+.env.local
+*.env
+
+# Dependencies & OS files
+node_modules/
+.DS_Store
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
