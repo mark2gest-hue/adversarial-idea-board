@@ -983,8 +983,8 @@
           <div class="ares-box-lbl">assistenza@</div>
         </div>
         <div class="ares-box">
-          <div id="box-team" class="ares-box-val">-</div>
-          <div class="ares-box-lbl">team@</div>
+          <div id="box-impresa" class="ares-box-val">-</div>
+          <div class="ares-box-lbl">impresa@</div>
         </div>
       </div>
       <div id="aresEmailStatus" style="font-size: 0.74rem; color: var(--text-dim); font-style: italic;">
@@ -1402,7 +1402,7 @@
           document.getElementById('box-info').innerText = res.boxCounts.info;
           document.getElementById('box-pagamenti').innerText = res.boxCounts.pagamenti;
           document.getElementById('box-assistenza').innerText = res.boxCounts.assistenza;
-          document.getElementById('box-team').innerText = res.boxCounts.team;
+          document.getElementById('box-impresa').innerText = res.boxCounts.impresa ?? (res.boxCounts.imprese ?? 0);
           status.innerText = `Aggiornato: ${res.total} email in arrivo sulle caselle.`;
           status.style.color = '#34D399';
 
