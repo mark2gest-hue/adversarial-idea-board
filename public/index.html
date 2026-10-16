@@ -1517,17 +1517,27 @@
         const res = await fetch(`${API_BASE}/api/ares/trading`).then(r => r.json());
         if (res.success) {
           if (res.online) {
-            statusEl.innerText = res.botActive ? 'Attivo' : 'Pausa Kill';
+            statusEl.innerText = res.botActive ? (res.source === 'vps' ? 'Live VPS' : 'Attivo') : 'Pausa Kill';
             statusEl.style.color = res.botActive ? '#34D399' : '#EF4444';
             balEl.innerText = `$${res.bankrollUsd}`;
-            posEl.innerText = res.activePositions?.length || 0;
-            sentEl.innerText = `${res.sentiment?.mood || 'Neutral'} (${res.sentiment?.score || 50})`;
+            posEl.innerText = `${res.activePositions?.length || 0} (${res.netPnlPct})`;
+            posEl.style.color = res.netPnlUsd >= 0 ? '#34D399' : '#F87171';
+            sentEl.innerText = `${res.winRatePct} (Oggi: ${res.dailyPnlUsd >= 0 ? '+' : ''}${res.dailyPnlUsd}$)`;
+            sentEl.style.color = res.dailyPnlUsd >= 0 ? '#34D399' : '#F87171';
+            if (fb) {
+              fb.style.display = 'block';
+              fb.style.background = 'rgba(16,185,129,0.08)';
+              fb.style.border = '1px solid rgba(16,185,129,0.2)';
+              fb.style.color = '#34D399';
+              fb.innerHTML = `📊 <b>Pool iniziale:</b> $${res.initialBankrollUsd} | <b>PnL Complessivo:</b> ${res.netPnlUsd > 0 ? '+' : ''}$${res.netPnlUsd} (${res.netPnlPct}) | <b>Trade eseguiti:</b> ${res.closedTradesCount}`;
+            }
           } else {
             statusEl.innerText = 'Standby';
             statusEl.style.color = 'var(--text-dim)';
             balEl.innerText = '$0';
             posEl.innerText = '0';
             sentEl.innerText = 'Standby (:3100)';
+            if (fb) fb.style.display = 'none';
           }
         }
       } catch (e) {
