@@ -488,9 +488,14 @@
           <div class="dot-live"></div>
           <span>4 Cervelli distinti (Gemini, DeepSeek, Groq, Agnes) pronti all'analisi autonoma</span>
         </div>
-        <button id="startBtn" class="btn-evaluate" onclick="runFullPipeline()">
-          <span>🔥 Avvia Collegio di Valutazione</span>
-        </button>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <button id="resetBtn" type="button" class="btn-preset" onclick="resetBoard()" style="padding: 0.65rem 1.15rem; font-size: 0.82rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; border-color: rgba(255,255,255,0.15);">
+            <span>🔄 Svuota Schede</span>
+          </button>
+          <button id="startBtn" class="btn-evaluate" onclick="runFullPipeline()">
+            <span>🔥 Avvia Collegio di Valutazione</span>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -817,6 +822,74 @@
         btn.disabled = false;
         btn.innerText = 'Riprova archiviazione';
       }
+    }
+
+    function resetBoard() {
+      // Svuota textarea
+      document.getElementById('ideaInput').value = '';
+      
+      // Ripristina stato memoria
+      boardState = {
+        preliminary: '',
+        initialReports: { champion: '', skeptic: '', cfo: '' },
+        rebuttals: { champion: '', skeptic: '', cfo: '' },
+        verdict: ''
+      };
+
+      // Ripristina pillole header
+      document.getElementById('pill-step1').className = "step-pill";
+      document.getElementById('pill-step2').className = "step-pill";
+      document.getElementById('pill-step3').className = "step-pill";
+
+      // Ripristina Sostenitore
+      document.getElementById('badge-champion').className = "badge-status";
+      document.getElementById('badge-champion').innerText = "In attesa";
+      document.getElementById('content-champion').innerHTML = `
+        <div class="placeholder-state">
+          Costruirà la versione più forte, concreta e realizzabile, individuando segmento iniziale, versione minima ed esperimento consigliato.
+        </div>`;
+      document.getElementById('rebuttal-box-champion').style.display = 'none';
+      document.getElementById('rebuttal-champion').innerHTML = '';
+
+      // Ripristina Scettico
+      document.getElementById('badge-skeptic').className = "badge-status";
+      document.getElementById('badge-skeptic').innerText = "In attesa";
+      document.getElementById('content-skeptic').innerHTML = `
+        <div class="placeholder-state">
+          Estrarrà le assunzioni non dimostrate (tabella ipotesi decisive, conseguenze se false, alternative dell'utente e piano di verifica).
+        </div>`;
+      document.getElementById('rebuttal-box-skeptic').style.display = 'none';
+      document.getElementById('rebuttal-skeptic').innerHTML = '';
+
+      // Ripristina Revisore Spietato
+      document.getElementById('badge-cfo').className = "badge-status";
+      document.getElementById('badge-cfo').innerText = "In attesa";
+      document.getElementById('content-cfo').innerHTML = `
+        <div class="placeholder-state">
+          Pre-mortem rigoroso: punto di rottura principale, cosa tagliare subito, 5 possibili cause di fallimento e condizioni di stop.
+        </div>`;
+      document.getElementById('rebuttal-box-cfo').style.display = 'none';
+      document.getElementById('rebuttal-cfo').innerHTML = '';
+
+      // Ripristina Giudice
+      document.getElementById('badge-judge').className = "badge-status";
+      document.getElementById('badge-judge').innerText = "In attesa del dibattito";
+      document.getElementById('content-judge').innerHTML = `
+        <div style="color: var(--text-dim); font-style: italic; font-size: 0.82rem; padding: 1.5rem 0;">
+          Il Giudice emetterà il verdetto vincolante (<strong style="color: #34D399;">PROCEDI</strong> | <strong style="color: #FBBF24;">VALIDA PRIMA</strong> | <strong style="color: #60A5FA;">MODIFICA</strong> | <strong style="color: #FB7185;">ARCHIVIA</strong>) dopo aver esaminato le perizie dei primi tre agenti e il giro di confronto.
+        </div>`;
+
+      // Disabilita tasto Obsidian
+      const obsBtn = document.getElementById('saveObsidianBtn');
+      obsBtn.disabled = true;
+      obsBtn.style.borderColor = 'var(--border-strong)';
+      obsBtn.style.color = '#E2E8F0';
+      obsBtn.innerHTML = '<span>💾 Archivia in Obsidian (01_Progetti)</span>';
+
+      // Reset bottone avvia
+      const startBtn = document.getElementById('startBtn');
+      startBtn.disabled = false;
+      startBtn.innerHTML = '<span>🔥 Avvia Collegio di Valutazione</span>';
     }
   </script>
 </body>
