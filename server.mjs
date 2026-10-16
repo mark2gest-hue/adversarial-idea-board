@@ -518,11 +518,19 @@ const server = http.createServer(async (req, res) => {
 
   // Serve la pagina Web
   if (req.method === 'GET' && (url.pathname === '/' || url.pathname === '/board')) {
-    const htmlPath = path.resolve(__dirname, 'public/index.html');
-    if (fs.existsSync(htmlPath)) {
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-      fs.createReadStream(htmlPath).pipe(res);
-      return;
+    const candidates = [
+      path.resolve(__dirname, 'public/index.html'),
+      path.resolve(__dirname, '../public/index.html'),
+      path.resolve(__dirname, '../IDEA_VALIDATOR.html'),
+      path.resolve(__dirname, 'IDEA_VALIDATOR.html'),
+      path.resolve(__dirname, '../adversarial-idea-board/public/index.html'),
+    ];
+    for (const htmlPath of candidates) {
+      if (fs.existsSync(htmlPath)) {
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        fs.createReadStream(htmlPath).pipe(res);
+        return;
+      }
     }
   }
 
