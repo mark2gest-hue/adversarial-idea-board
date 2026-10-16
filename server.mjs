@@ -46,7 +46,7 @@ const PROVIDERS = {
     name: 'Gemini (Google)',
     baseUrl: process.env.GEMINI_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta/openai',
     apiKey: process.env.GEMINI_API_KEY,
-    model: 'gemini-2.5-flash',
+    model: 'gemini-3.8-flash',
   },
   deepseek: {
     name: 'DeepSeek',
