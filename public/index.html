@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🏛️ Adversarial AI Board — Stress Test Nuove Idee</title>
+  <title>🏛️ Adversarial AI Advisory Board — Valutazione Rigorosa Progetti</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,31 +11,31 @@
   <style>
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #090B10;
+      background-color: #080A10;
       color: #F1F5F9;
     }
     .mono { font-family: 'JetBrains Mono', monospace; }
     .glass-card {
-      background: rgba(18, 22, 34, 0.75);
+      background: rgba(15, 19, 30, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-    }
-    .glass-card:hover {
-      border-color: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(14px);
     }
     .pulse-dot {
-      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      animation: pulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.15); }
+      50% { opacity: 0.3; transform: scale(1.15); }
     }
+    table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; margin-bottom: 0.5rem; }
+    th { background: rgba(255,255,255,0.06); text-align: left; padding: 6px 10px; font-size: 11px; color: #94A3B8; text-transform: uppercase; }
+    td { border-top: 1px solid rgba(255,255,255,0.06); padding: 6px 10px; font-size: 11px; color: #CBD5E1; }
   </style>
 </head>
-<body class="min-h-screen pb-20 selection:bg-indigo-500/30">
+<body class="min-h-screen pb-24 selection:bg-indigo-500/30">
 
   <!-- TOP HEADER -->
-  <header class="border-b border-white/10 bg-[#0C101A]/90 sticky top-0 z-50 backdrop-blur-md">
+  <header class="border-b border-white/10 bg-[#0A0D16]/95 sticky top-0 z-50 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-rose-500/20 text-xl">
@@ -44,25 +44,24 @@
         <div>
           <div class="flex items-center space-x-2">
             <h1 class="text-lg font-bold text-white tracking-tight">Adversarial Advisory Board</h1>
-            <span class="mono text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold uppercase">Personal Edition</span>
+            <span class="mono text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold uppercase">Protocollo Rigoroso</span>
           </div>
-          <p class="text-xs text-slate-400">Stress-test preliminare per le nuove idee e accordi di Marco</p>
+          <p class="text-xs text-slate-400">Analisi Indipendente → Giro di Confronto (Max 200 parole) → Verdetto Esecutivo</p>
         </div>
       </div>
 
-      <!-- STATUS BADGES DE I 4 MOTORI -->
-      <div class="hidden md:flex items-center space-x-2 text-xs">
-        <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 pulse-dot"></span>Gemini (Visionario)
+      <!-- WORKFLOW STEP PILLS -->
+      <div class="hidden lg:flex items-center space-x-2 text-xs">
+        <span id="pill-step1" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-400 font-medium">
+          1. Analisi Indipendente
         </span>
-        <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 font-medium">
-          <span class="w-1.5 h-1.5 rounded-full bg-rose-400 mr-1.5 pulse-dot"></span>DeepSeek (Scettico)
+        <span class="text-slate-600">→</span>
+        <span id="pill-step2" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-400 font-medium">
+          2. Confronto Obiezioni
         </span>
-        <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 font-medium">
-          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mr-1.5 pulse-dot"></span>Groq (CFO)
-        </span>
-        <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-medium">
-          <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mr-1.5 pulse-dot"></span>Agnes (Giudice)
+        <span class="text-slate-600">→</span>
+        <span id="pill-step3" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-400 font-medium">
+          3. Verdetto Giudice
         </span>
       </div>
     </div>
@@ -71,21 +70,21 @@
   <!-- MAIN WRAPPER -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
 
-    <!-- INPUT BOX SECTION -->
+    <!-- INPUT BOX SECTION (SCHEDA PROGETTO CONDIVISA) -->
     <section class="glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
       <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none"></div>
       
       <div class="flex items-center justify-between mb-4">
         <div>
           <h2 class="text-base font-bold text-white flex items-center">
-            <span class="text-indigo-400 mr-2">⚡</span> Inserisci l'Idea o l'Accordo da Stressare
+            <span class="text-indigo-400 mr-2">📋</span> Scheda Progetto Condivisa
           </h2>
-          <p class="text-xs text-slate-400 mt-0.5">Spiega in poche righe cosa vuoi costruire, il modello di prezzo o la trattativa aperta.</p>
+          <p class="text-xs text-slate-400 mt-0.5">I 4 agenti analizzeranno questo testo distinguendo rigorosamente FATTI, DICHIARAZIONI, IPOTESI e DATI MANCANTI.</p>
         </div>
 
         <!-- QUICK PRESETS -->
         <div class="hidden sm:flex items-center space-x-2">
-          <span class="text-xs text-slate-500">Preset rapidi:</span>
+          <span class="text-xs text-slate-500">Preset:</span>
           <button onclick="applyPreset('alpha')" class="text-xs px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
             Amazon Suite / Alpha
           </button>
@@ -93,92 +92,111 @@
             FlowAudit Discovery
           </button>
           <button onclick="applyPreset('bot')" class="text-xs px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
-            Bot Prop Trading
+            Bot Prop Trading L1
           </button>
         </div>
       </div>
 
       <div class="space-y-4">
-        <textarea id="ideaInput" rows="4" 
-          placeholder="Es: Vorrei lanciare una suite di agenti AI per merchant Amazon in partnership con Alpha. Alpha fa da distributore commerciale per i suoi 100 clienti e-commerce e trattiene il 20% sul canone, io fornisco tecnologia e hosting VPS con canone mensile di 250€/mese per merchant..."
-          class="w-full bg-[#0C101A] border border-white/10 rounded-xl p-4 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition resize-y"></textarea>
+        <textarea id="ideaInput" rows="5" 
+          placeholder="Descrivi qui il progetto, modello di prezzo, target utenti, risorse a disposizione o incolla un link TikTok/YouTube/Web..."
+          class="w-full bg-[#090C14] border border-white/10 rounded-xl p-4 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition resize-y"></textarea>
 
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
           <div class="flex items-center space-x-2 text-xs text-slate-400">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span>4 Modelli indipendenti interrogano simultaneamente il caso</span>
+            <span>Nessun giudizio basato sugli altri nella Fase 1: perizie 100% indipendenti</span>
           </div>
 
-          <button id="startBtn" onclick="runStressTest()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-600 to-rose-600 hover:from-indigo-600 hover:to-rose-700 text-white font-bold text-sm shadow-lg shadow-indigo-500/25 flex items-center justify-center space-x-2 transition transform active:scale-95 cursor-pointer">
-            <span>🔥 Avvia Dibattito Adversarial</span>
+          <button id="startBtn" onclick="runFullPipeline()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-600 to-rose-600 hover:from-indigo-600 hover:to-rose-700 text-white font-bold text-sm shadow-lg shadow-indigo-500/25 flex items-center justify-center space-x-2 transition transform active:scale-95 cursor-pointer">
+            <span>🔥 Avvia Collegio di Valutazione</span>
           </button>
         </div>
       </div>
     </section>
 
-    <!-- LIVE ADVERSARIAL BOARD GRID (3 COLONNE DIVERGENTI) -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- FASE 1: I TRE REPORT INDIPENDENTI -->
+    <section>
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 flex items-center">
+          <span class="w-2 h-2 rounded-full bg-indigo-500 mr-2"></span> Fase 1 — Analisi Indipendenti dei 3 Agenti
+        </h3>
+        <span id="badge-fase1" class="text-xs mono text-slate-500">In attesa</span>
+      </div>
 
-      <!-- AGENTE 1: SOSTENITORE (GEMINI) -->
-      <div class="glass-card rounded-2xl p-6 flex flex-col relative overflow-hidden border-t-2 border-t-emerald-500">
-        <div class="flex items-center justify-between pb-4 border-b border-white/10">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-lg">
-              🚀
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- 1. SOSTENITORE STRATEGICO (GEMINI) -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col relative overflow-hidden border-t-2 border-t-emerald-500">
+          <div class="flex items-center justify-between pb-3 border-b border-white/10">
             <div>
-              <h3 class="text-sm font-bold text-emerald-400">Il Sostenitore</h3>
+              <h4 class="text-sm font-bold text-emerald-400">Sostenitore strategico</h4>
               <p class="text-[11px] text-slate-400 mono">Gemini 2.5 Flash</p>
             </div>
+            <span id="badge-champion" class="mono text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10">In attesa</span>
           </div>
-          <span id="badge-champion" class="mono text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10">In attesa</span>
+          <div id="content-champion" class="mt-4 text-xs text-slate-300 leading-relaxed space-y-3 flex-1 overflow-y-auto max-h-[420px] pr-1">
+            <p class="text-slate-500 italic">Costruirà la versione più forte, concreta e realizzabile, individuando segmento iniziale, versione minima ed esperimento consigliato.</p>
+          </div>
         </div>
-        <div id="content-champion" class="mt-4 text-xs text-slate-300 leading-relaxed space-y-3 flex-1 overflow-y-auto max-h-[380px] pr-1">
-          <p class="text-slate-500 italic">In attesa dell'idea per identificare il potenziale di scala, la proposta di valore unica e le leve competitive...</p>
-        </div>
-      </div>
 
-      <!-- AGENTE 2: SCETTICO (DEEPSEEK) -->
-      <div class="glass-card rounded-2xl p-6 flex flex-col relative overflow-hidden border-t-2 border-t-rose-500">
-        <div class="flex items-center justify-between pb-4 border-b border-white/10">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-lg">
-              🛑
-            </div>
+        <!-- 2. SCETTICO DELLE IPOTESI (DEEPSEEK) -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col relative overflow-hidden border-t-2 border-t-rose-500">
+          <div class="flex items-center justify-between pb-3 border-b border-white/10">
             <div>
-              <h3 class="text-sm font-bold text-rose-400">Lo Scettico</h3>
+              <h4 class="text-sm font-bold text-rose-400">Scettico delle ipotesi</h4>
               <p class="text-[11px] text-slate-400 mono">DeepSeek Reasoner/V3</p>
             </div>
+            <span id="badge-skeptic" class="mono text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10">In attesa</span>
           </div>
-          <span id="badge-skeptic" class="mono text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10">In attesa</span>
+          <div id="content-skeptic" class="mt-4 text-xs text-slate-300 leading-relaxed space-y-3 flex-1 overflow-y-auto max-h-[420px] pr-1">
+            <p class="text-slate-500 italic">Estrarrà le assunzioni non dimostrate (tabella ipotesi decisive, conseguenze se false, alternative dell'utente e piano di verifica).</p>
+          </div>
         </div>
-        <div id="content-skeptic" class="mt-4 text-xs text-slate-300 leading-relaxed space-y-3 flex-1 overflow-y-auto max-h-[380px] pr-1">
-          <p class="text-slate-500 italic">In attesa dell'idea per trovare le crepe mortali, i rischi contrattuali e i motivi di fallimento entro 60 giorni...</p>
-        </div>
-      </div>
 
-      <!-- AGENTE 3: CFO (GROQ) -->
-      <div class="glass-card rounded-2xl p-6 flex flex-col relative overflow-hidden border-t-2 border-t-amber-500">
-        <div class="flex items-center justify-between pb-4 border-b border-white/10">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-lg">
-              💰
-            </div>
+        <!-- 3. REVISORE SPIETATO (GROQ) -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col relative overflow-hidden border-t-2 border-t-amber-500">
+          <div class="flex items-center justify-between pb-3 border-b border-white/10">
             <div>
-              <h3 class="text-sm font-bold text-amber-400">Il CFO Spietato</h3>
+              <h4 class="text-sm font-bold text-amber-400">Revisore spietato</h4>
               <p class="text-[11px] text-slate-400 mono">Groq Llama 3.3 70B</p>
             </div>
+            <span id="badge-cfo" class="mono text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10">In attesa</span>
           </div>
-          <span id="badge-cfo" class="mono text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10">In attesa</span>
+          <div id="content-cfo" class="mt-4 text-xs text-slate-300 leading-relaxed space-y-3 flex-1 overflow-y-auto max-h-[420px] pr-1">
+            <p class="text-slate-500 italic">Pre-mortem rigoroso: punto di rottura principale, cosa tagliare subito, 5 possibili cause di fallimento e condizioni di stop.</p>
+          </div>
         </div>
-        <div id="content-cfo" class="mt-4 text-xs text-slate-300 leading-relaxed space-y-3 flex-1 overflow-y-auto max-h-[380px] pr-1">
-          <p class="text-slate-500 italic">In attesa dell'idea per calcolare margini netti, costi orari/token e la formula di monetizzazione a cassa immediata...</p>
-        </div>
-      </div>
 
+      </div>
     </section>
 
-    <!-- AGENTE 4: IL GIUDICE ESECUTIVO (AGNES AI) - VERDETTO FINALE -->
+    <!-- FASE 2: UNICO GIRO DI CONFRONTO (OBIEZIONI E RISPOSTE) -->
+    <section id="section-rebuttals" class="hidden space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-purple-400 flex items-center">
+          <span class="w-2 h-2 rounded-full bg-purple-500 mr-2"></span> Fase 2 — Unico Giro di Confronto (Max 200 parole ciascuno)
+        </h3>
+        <span class="text-xs text-slate-500">1 argomento accolto · 1 contestato · conclusione aggiornata</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card rounded-2xl p-5 border-l-2 border-l-emerald-500">
+          <h4 class="text-xs font-bold text-emerald-400 mb-2">Controdeduzioni Sostenitore</h4>
+          <div id="rebuttal-champion" class="text-xs text-slate-300 leading-relaxed italic">In attesa delle altre perizie...</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 border-l-2 border-l-rose-500">
+          <h4 class="text-xs font-bold text-rose-400 mb-2">Controdeduzioni Scettico</h4>
+          <div id="rebuttal-skeptic" class="text-xs text-slate-300 leading-relaxed italic">In attesa delle altre perizie...</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 border-l-2 border-l-amber-500">
+          <h4 class="text-xs font-bold text-amber-400 mb-2">Controdeduzioni Revisore Spietato</h4>
+          <div id="rebuttal-cfo" class="text-xs text-slate-300 leading-relaxed italic">In attesa delle altre perizie...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FASE 3: VERDETTO FINALE DEL GIUDICE DECISIONALE (AGNES) -->
     <section class="glass-card rounded-2xl p-6 sm:p-8 border-t-4 border-t-indigo-500 relative overflow-hidden shadow-2xl">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
         <div class="flex items-center space-x-4">
@@ -187,15 +205,15 @@
           </div>
           <div>
             <div class="flex items-center space-x-3">
-              <h3 class="text-base font-extrabold text-white tracking-tight">Verdetto Esecutivo del Giudice</h3>
-              <span id="badge-judge" class="mono text-xs px-2.5 py-0.5 rounded-full bg-white/5 text-slate-400 border border-white/10">In attesa del dibattito</span>
+              <h3 class="text-base font-extrabold text-white tracking-tight">Fase 3 — Verdetto Finale del Giudice Decisionale</h3>
+              <span id="badge-judge" class="mono text-xs px-2.5 py-0.5 rounded-full bg-white/5 text-slate-400 border border-white/10">In attesa</span>
             </div>
-            <p class="text-xs text-slate-400">Sintesi imparziale orchestrata da Agnes AI dopo aver ascoltato Gemini, DeepSeek e Groq</p>
+            <p class="text-xs text-slate-400">Verdetti consentiti: <strong class="text-emerald-400">PROCEDI</strong> | <strong class="text-amber-400">VALIDA PRIMA</strong> | <strong class="text-blue-400">MODIFICA</strong> | <strong class="text-rose-400">ARCHIVIA</strong></p>
           </div>
         </div>
 
-        <!-- ACTIONS: SALVA IN OBSIDIAN -->
-        <div class="flex items-center space-x-3">
+        <!-- SALVATAGGIO OBSIDIAN -->
+        <div>
           <button id="saveObsidianBtn" onclick="saveToObsidian()" disabled class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed transition flex items-center space-x-2">
             <span>💾 Salva nel Secondo Cervello (Obsidian)</span>
           </button>
@@ -204,7 +222,7 @@
 
       <div id="content-judge" class="mt-6 text-sm text-slate-200 leading-relaxed space-y-4">
         <div class="p-6 rounded-xl bg-white/[0.02] border border-white/5 text-slate-500 text-center italic text-xs">
-          Il Giudice interverrà automaticamente appena il Sostenitore, lo Scettico e il CFO avranno completato la loro deposizione.
+          Il Giudice emetterà il verdetto definitivo integrando la propria valutazione preliminare riservata, i tre report indipendenti e le controdeduzioni del giro di confronto.
         </div>
       </div>
     </section>
@@ -215,9 +233,9 @@
     const API_BASE = 'http://localhost:3028';
 
     const presets = {
-      alpha: "Vorrei lanciare una suite di agenti AI per merchant Amazon (Amazon Agent Studio) in partnership con Alpha / E-Bridge. Alpha opera come distributore commerciale esclusivo verso il suo portafoglio di 100 clienti e-commerce e trattiene il 20% sul canone mensile. Io sviluppo, gestisco l'infrastruttura su VPS Oracle dedicate per cliente e le chiavi crittografate. Offerta: Setup iniziale 600€ + canone 290€/mese per merchant. Vorrei capire se i termini contrattuali reggono o se rischio di lavorare gratis per l'onboarding.",
-      flowaudit: "Creare un'applicazione standalone mobile-first (FlowAudit AI) per fare discovery e audit dei processi aziendali direttamente sul campo da iPad/smartphone presso le PMI clienti. Genera in 3 minuti un report d'impatto con ROI calcolato e proposta di adozione agenti AI. Modello: canone di consulenza una tantum da 1.200€ ad audit.",
-      bot: "Lanciare un bot ad alta frequenza (NautilusTrader + Hyperliquid L1) con modello Avellaneda-Stoikov e order flow imbalance per raccogliere fee di market making. Capitale iniziale 15.000$ gestito con Stop Loss stringente a Break-Even netto reale. Vorrei validare se conviene raccogliere capitali terzi (PAMM) o tenerlo 100% proprietario."
+      alpha: "Progetto: Suite di agenti AI per merchant Amazon (Amazon Agent Studio) in partnership con Alpha / E-Bridge.\nContesto: Alpha ha 100 clienti e-commerce e opera come distributore commerciale esclusivo trattenendo il 20% sul canone. Io fornisco tecnologia, chiavi crittografate e hosting VPS Oracle dedicate.\nOfferta proposta: Setup iniziale 600€ + canone mensile 290€/merchant.\nObiettivo commerciale: 20 clienti entro 6 mesi.\nCompetenze: Ho già sviluppato l'architettura dei 3 agenti (Inventory, PPC Growth, Fee Recovery) e il Diagnostic Tool.",
+      flowaudit: "Progetto: FlowAudit AI, web app mobile standalone per audit di fattibilità AI sul campo presso PMI clienti.\nContesto: Durante il primo incontro di 45 minuti con l'imprenditore, inserisco dati e ottengo istantaneamente un report esecutivo con stima ROI e piano di transizione ad agenti autonomi.\nModello: Consulenza di audit a 1.200€ una tantum, scalabile poi sull'adozione del Gestionale o agenti verticali.\nRisorse: Prototipo live pronto su VPS Oracle.",
+      bot: "Progetto: Bot HFT Market Making su Hyperliquid L1 (NautilusTrader + modello Avellaneda-Stoikov + Order Flow Imbalance).\nContesto: 15.000$ di capitale proprietario iniziale con Stop a Net Break-Even reale e filtro anti-erosione fee.\nDomanda: Validare se conviene raccogliere capitali terzi (PAMM) o mantenerlo 100% proprietario."
     };
 
     function applyPreset(key) {
@@ -226,7 +244,7 @@
 
     function formatMarkdown(text) {
       if (!text) return '';
-      return text
+      let formatted = text
         .replace(/^### (.*$)/gim, '<h4 class="font-bold text-white text-xs mt-3 mb-1 uppercase tracking-wider text-indigo-400">$1</h4>')
         .replace(/^## (.*$)/gim, '<h3 class="font-bold text-white text-sm mt-3 mb-1.5">$1</h3>')
         .replace(/^# (.*$)/gim, '<h2 class="font-extrabold text-white text-base mt-4 mb-2">$1</h2>')
@@ -234,20 +252,22 @@
         .replace(/^\s*-\s+(.*$)/gim, '<li class="ml-4 list-disc text-slate-300 my-1">$1</li>')
         .replace(/\n\n/g, '<div class="h-2"></div>')
         .replace(/\n/g, '<br/>');
+
+      return formatted;
     }
 
-    let boardResults = {
-      champion: '',
-      skeptic: '',
-      cfo: '',
-      judge: ''
+    let boardState = {
+      preliminary: '',
+      initialReports: { champion: '', skeptic: '', cfo: '' },
+      rebuttals: { champion: '', skeptic: '', cfo: '' },
+      verdict: ''
     };
 
-    async function evaluateAgent(role, idea, boardContext = null) {
+    async function evaluateAgent(role, idea) {
       const res = await fetch(`${API_BASE}/api/evaluate-agent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ role, idea, boardContext })
+        body: JSON.stringify({ role, idea })
       });
       if (!res.ok) {
         const err = await res.json();
@@ -256,75 +276,142 @@
       return await res.json();
     }
 
-    async function runStressTest() {
+    async function crossExamine(role, myInitialReport, otherReports) {
+      const res = await fetch(`${API_BASE}/api/cross-examine`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ role, myInitialReport, otherReports })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || `Errore cross-examine ${role}`);
+      }
+      return await res.json();
+    }
+
+    async function judgeFinal(idea, preliminary, initialReports, rebuttals) {
+      const res = await fetch(`${API_BASE}/api/judge-final`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idea, preliminary, initialReports, rebuttals })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || `Errore verdetto finale`);
+      }
+      return await res.json();
+    }
+
+    async function runFullPipeline() {
       const idea = document.getElementById('ideaInput').value.trim();
       if (!idea) {
-        alert('Inserisci prima un\'idea o proposta contrattuale da stressare!');
+        alert('Inserisci la Scheda Progetto da valutare!');
         return;
       }
 
       const startBtn = document.getElementById('startBtn');
       startBtn.disabled = true;
-      startBtn.innerHTML = `<span>⏳ Dibattito in Corso...</span>`;
+      startBtn.innerHTML = `<span>⏳ Valutazione in Corso...</span>`;
 
-      // Reset stati grafici
-      ['champion', 'skeptic', 'cfo', 'judge'].forEach(r => {
-        document.getElementById(`badge-${r}`).className = "mono text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20";
-        document.getElementById(`badge-${r}`).innerText = "In analisi...";
-        document.getElementById(`content-${r}`).innerHTML = `<div class="flex items-center space-x-2 text-slate-400 text-xs py-4"><span class="w-2 h-2 rounded-full bg-amber-400 pulse-dot"></span><span>Elaborazione argomentazioni in corso...</span></div>`;
-      });
+      // Reset interfaccia
+      document.getElementById('section-rebuttals').classList.remove('hidden');
       document.getElementById('saveObsidianBtn').disabled = true;
 
+      document.getElementById('pill-step1').className = "px-2.5 py-1 rounded-lg bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 font-semibold";
+      document.getElementById('pill-step2').className = "px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-400 font-medium";
+      document.getElementById('pill-step3').className = "px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-400 font-medium";
+
+      ['champion', 'skeptic', 'cfo'].forEach(r => {
+        document.getElementById(`badge-${r}`).className = "mono text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20";
+        document.getElementById(`badge-${r}`).innerText = "Analisi indipendente...";
+        document.getElementById(`content-${r}`).innerHTML = `<div class="flex items-center space-x-2 text-slate-400 text-xs py-4"><span class="w-2 h-2 rounded-full bg-amber-400 pulse-dot"></span><span>Redazione perizia autonoma in corso...</span></div>`;
+        document.getElementById(`rebuttal-${r}`).innerHTML = `<span class="text-slate-500 italic">In attesa dei report iniziali...</span>`;
+      });
+
+      document.getElementById('badge-judge').className = "mono text-xs px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20";
+      document.getElementById('badge-judge').innerText = "Valutazione preliminare riservata...";
+      document.getElementById('content-judge').innerHTML = `<div class="flex items-center space-x-2 text-indigo-400 text-xs py-4"><span class="w-2 h-2 rounded-full bg-indigo-400 pulse-dot"></span><span>Il Giudice sta formulando la propria valutazione preliminare a freddo...</span></div>`;
+
       try {
-        // Step 1: Esecuzione parallela dei primi 3 cervelli (Gemini, DeepSeek, Groq)
-        const [championRes, skepticRes, cfoRes] = await Promise.all([
+        // ── FASE 1: I 4 AGENTI LAVORANO IN TOTALE AUTONOMIA ─────────────────
+        const [championRes, skepticRes, cfoRes, prelimJudgeRes] = await Promise.all([
           evaluateAgent('champion', idea),
           evaluateAgent('skeptic', idea),
-          evaluateAgent('cfo', idea)
+          evaluateAgent('cfo', idea),
+          evaluateAgent('judge_preliminary', idea)
         ]);
 
-        boardResults.champion = championRes.content;
+        boardState.initialReports.champion = championRes.content;
         document.getElementById('content-champion').innerHTML = formatMarkdown(championRes.content);
         document.getElementById('badge-champion').className = "mono text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
-        document.getElementById('badge-champion').innerText = "Completato";
+        document.getElementById('badge-champion').innerText = "Report Pronto";
 
-        boardResults.skeptic = skepticRes.content;
+        boardState.initialReports.skeptic = skepticRes.content;
         document.getElementById('content-skeptic').innerHTML = formatMarkdown(skepticRes.content);
         document.getElementById('badge-skeptic').className = "mono text-[10px] px-2 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20";
-        document.getElementById('badge-skeptic').innerText = "Completato";
+        document.getElementById('badge-skeptic').innerText = "Report Pronto";
 
-        boardResults.cfo = cfoRes.content;
+        boardState.initialReports.cfo = cfoRes.content;
         document.getElementById('content-cfo').innerHTML = formatMarkdown(cfoRes.content);
         document.getElementById('badge-cfo').className = "mono text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20";
-        document.getElementById('badge-cfo').innerText = "Completato";
+        document.getElementById('badge-cfo').innerText = "Report Pronto";
 
-        // Step 2: Il Giudice (Agnes AI) analizza l'intero dibattito per emettere il verdetto
-        document.getElementById('badge-judge').innerText = "Agnes sta deliberando...";
-        document.getElementById('content-judge').innerHTML = `<div class="flex items-center space-x-2 text-indigo-400 text-sm py-4"><span class="w-2 h-2 rounded-full bg-indigo-400 pulse-dot"></span><span>Il Giudice Agnes sta pesando le argomentazioni per il verdetto finale...</span></div>`;
+        boardState.preliminary = prelimJudgeRes.content;
 
-        const judgeRes = await evaluateAgent('judge', idea, {
-          champion: boardResults.champion,
-          skeptic: boardResults.skeptic,
-          cfo: boardResults.cfo
+        // ── FASE 2: UNICO GIRO DI CONFRONTO (OBIEZIONI E RISPOSTE) ─────────
+        document.getElementById('pill-step1').className = "px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium";
+        document.getElementById('pill-step2').className = "px-2.5 py-1 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-300 font-semibold";
+
+        ['champion', 'skeptic', 'cfo'].forEach(r => {
+          document.getElementById(`rebuttal-${r}`).innerHTML = `<div class="flex items-center space-x-2 text-purple-400 text-xs py-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400 pulse-dot"></span><span>Esame delle altre perizie...</span></div>`;
         });
 
-        boardResults.judge = judgeRes.content;
-        document.getElementById('content-judge').innerHTML = formatMarkdown(judgeRes.content);
+        const otherForChamp = `--- SCETTICO DELLE IPOTESI ---\n${boardState.initialReports.skeptic}\n\n--- REVISORE SPIETATO ---\n${boardState.initialReports.cfo}`;
+        const otherForSkep = `--- SOSTENITORE STRATEGICO ---\n${boardState.initialReports.champion}\n\n--- REVISORE SPIETATO ---\n${boardState.initialReports.cfo}`;
+        const otherForCfo = `--- SOSTENITORE STRATEGICO ---\n${boardState.initialReports.champion}\n\n--- SCETTICO DELLE IPOTESI ---\n${boardState.initialReports.skeptic}`;
+
+        const [rebChamp, rebSkep, rebCfo] = await Promise.all([
+          crossExamine('champion', boardState.initialReports.champion, otherForChamp),
+          crossExamine('skeptic', boardState.initialReports.skeptic, otherForSkep),
+          crossExamine('cfo', boardState.initialReports.cfo, otherForCfo)
+        ]);
+
+        boardState.rebuttals.champion = rebChamp.content;
+        document.getElementById('rebuttal-champion').innerHTML = formatMarkdown(rebChamp.content);
+
+        boardState.rebuttals.skeptic = rebSkep.content;
+        document.getElementById('rebuttal-skeptic').innerHTML = formatMarkdown(rebSkep.content);
+
+        boardState.rebuttals.cfo = rebCfo.content;
+        document.getElementById('rebuttal-cfo').innerHTML = formatMarkdown(rebCfo.content);
+
+        // ── FASE 3: GIUDICE DECISIONALE — VERDETTO DEFINITIVO ──────────────
+        document.getElementById('pill-step2').className = "px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium";
+        document.getElementById('pill-step3').className = "px-2.5 py-1 rounded-lg bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 font-semibold";
+
         document.getElementById('badge-judge').className = "mono text-xs px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30";
-        document.getElementById('badge-judge').innerText = "Verdetto Esecutivo Emesso";
+        document.getElementById('badge-judge').innerText = "Agnes sta integrando il dibattito...";
+        document.getElementById('content-judge').innerHTML = `<div class="flex items-center space-x-2 text-indigo-400 text-sm py-4"><span class="w-2 h-2 rounded-full bg-indigo-400 pulse-dot"></span><span>Il Giudice sta integrando fatti, ipotesi e controdeduzioni per emettere il verdetto definitivo...</span></div>`;
+
+        const finalJudgeRes = await judgeFinal(idea, boardState.preliminary, boardState.initialReports, boardState.rebuttals);
+
+        boardState.verdict = finalJudgeRes.content;
+        document.getElementById('content-judge').innerHTML = formatMarkdown(finalJudgeRes.content);
+        document.getElementById('badge-judge').className = "mono text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+        document.getElementById('badge-judge').innerText = "Verdetto Finale Emesso";
         document.getElementById('saveObsidianBtn').disabled = false;
 
       } catch (err) {
-        alert('Errore durante lo stress test: ' + err.message);
+        alert('Errore durante la sessione del collegio: ' + err.message);
       } finally {
         startBtn.disabled = false;
-        startBtn.innerHTML = `<span>🔥 Avvia Nuovo Stress Test</span>`;
+        startBtn.innerHTML = `<span>🔥 Avvia Nuova Valutazione</span>`;
       }
     }
 
     async function saveToObsidian() {
       const idea = document.getElementById('ideaInput').value.trim();
-      const firstLine = idea.split('\n')[0].slice(0, 40) || 'Idea';
+      const firstLine = idea.split('\n')[0].slice(0, 35) || 'Progetto';
       const btn = document.getElementById('saveObsidianBtn');
       btn.disabled = true;
       btn.innerText = 'Salvataggio in corso...';
@@ -336,10 +423,9 @@
           body: JSON.stringify({
             title: firstLine,
             idea,
-            champion: boardResults.champion,
-            skeptic: boardResults.skeptic,
-            cfo: boardResults.cfo,
-            judge: boardResults.judge
+            initialReports: boardState.initialReports,
+            rebuttals: boardState.rebuttals,
+            verdict: boardState.verdict
           })
         });
         const data = await res.json();
