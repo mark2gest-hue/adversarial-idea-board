@@ -383,7 +383,14 @@ const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
 
   // Serve la pagina Web
-  if (req.method === 'GET' && (url.pathname === '/' || url.pathname === '/board')) {
+  if (
+    (req.method === 'GET' || req.method === 'HEAD') &&
+    (url.pathname === '/' ||
+     url.pathname === '/board' ||
+     url.pathname === '/board/' ||
+     url.pathname === '/board/index.html' ||
+     url.pathname === '/index.html')
+  ) {
     const candidates = [
       path.resolve(__dirname, 'public/index.html'),
       path.resolve(__dirname, '../public/index.html'),
@@ -593,6 +600,7 @@ ${verdict || ''}
 
   // ARES 1: Controllo Email Aiutiamoci
   if (req.method === 'GET' && url.pathname === '/api/ares/emails') {
+    try {
       const supabaseUrl = process.env.SUPABASE_URL || "https://iwrrembvwzdcutdkddgr.supabase.co";
       const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
       if (!serviceRoleKey) {
@@ -937,7 +945,7 @@ ${verdict || ''}
   }
 
   // ARES 7: Generazione Audio Digest Mattutino ("Buongiorno Marco")
-  if (req.method === 'POST' && url.pathname === '/api/ares/digest') {
+  if ((req.method === 'GET' || req.method === 'POST') && url.pathname === '/api/ares/digest') {
     try {
       // 1. Raccoglie dati email
       let emailInfo = { total: 0, info: 0, pagamenti: 0, assistenza: 0, impresa: 0 };
@@ -989,26 +997,28 @@ ${verdict || ''}
       const aiffPath = '/tmp/ares_digest.aiff';
       const oggPath = '/tmp/ares_digest.ogg';
 
-      try {
-        await execFileAsync('say', ['-v', 'Federica', '-o', aiffPath, scriptText]);
-        await execFileAsync('/opt/homebrew/bin/ffmpeg', [
-          '-y',
-          '-i', aiffPath,
-          '-c:a', 'libopus',
-          '-b:a', '64k',
-          oggPath
-        ]);
-      } catch (voiceErr) {
-        // Fallback a voce Alice se Federica ha problemi
-        console.warn('⚠️ Fallback voce Federica -> Alice:', voiceErr.message);
-        await execFileAsync('say', ['-v', 'Alice', '-o', aiffPath, scriptText]);
-        await execFileAsync('/opt/homebrew/bin/ffmpeg', [
-          '-y',
-          '-i', aiffPath,
-          '-c:a', 'libopus',
-          '-b:a', '64k',
-          oggPath
-        ]);
+      if (process.platform === 'darwin') {
+        try {
+          await execFileAsync('say', ['-v', 'Federica', '-o', aiffPath, scriptText]);
+          await execFileAsync('/opt/homebrew/bin/ffmpeg', [
+            '-y',
+            '-i', aiffPath,
+            '-c:a', 'libopus',
+            '-b:a', '64k',
+            oggPath
+          ]);
+        } catch (voiceErr) {
+          try {
+            await execFileAsync('say', ['-v', 'Alice', '-o', aiffPath, scriptText]);
+            await execFileAsync('/opt/homebrew/bin/ffmpeg', [
+              '-y',
+              '-i', aiffPath,
+              '-c:a', 'libopus',
+              '-b:a', '64k',
+              oggPath
+            ]);
+          } catch (_) {}
+        }
       }
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
