@@ -764,7 +764,51 @@ ${verdict || ''}
         return;
       }
 
-      // 1. Prova prima in locale se il server 3100 è attivo sul Mac (timeout rapido 250ms)
+      // 1. Prova prima il nuovo motore Bot Trading 2 (Porta 3105)
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 250);
+        const resHft = await fetch('http://127.0.0.1:3105/api/state', {
+          signal: controller.signal
+        }).catch(() => null);
+        clearTimeout(timeout);
+
+        if (resHft && resHft.ok) {
+          const hft = await resHft.json().catch(() => ({}));
+          const m = hft.metrics || {};
+          const result = {
+            success: true,
+            online: true,
+            source: 'Bot Trading 2 (Hyperliquid L1)',
+            botActive: !m.isDailyHalted,
+            status: m.isDailyHalted ? '🛡️ PROFIT LOCK ATTIVO (Riposo)' : (m.dailyTargetReached ? '🎯 TARGET 1% CENTRATO (Extra-Run 50% Sizing)' : '🟢 ATTIVO (Maker Quoting L1)'),
+            bankrollUsd: m.bankroll || 1500.0,
+            initialBankrollUsd: m.initialBankroll || 1500.0,
+            netPnlUsd: m.totalPnl || 0.0,
+            netPnlPct: ((m.totalPnl / (m.initialBankroll || 1500)) * 100).toFixed(2) + '%',
+            dailyPnlUsd: m.totalPnl || 0.0,
+            winRatePct: (m.winRate || 0).toFixed(1) + '%',
+            closedTradesCount: m.totalTrades || 0,
+            activePositions: hft.openPositions || [],
+            pendingOrdersCount: hft.pendingOrders?.length || 0,
+            totalFees: m.totalFees || 0,
+            ratchetStatus: {
+              targetReached: !!m.dailyTargetReached,
+              isHalted: !!m.isDailyHalted,
+              lockedFloorUsd: m.dailyLockedFloorUsd || 0
+            },
+            sentiment: { mood: 'Quantitative Microstructure', score: 85 },
+            lastUpdated: new Date().toISOString()
+          };
+          globalThis._aresTradingCache = result;
+          globalThis._aresTradingCacheTime = now;
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify(result));
+          return;
+        }
+      } catch (err) {}
+
+      // Fallback 3100
       try {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 250);
